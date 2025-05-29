@@ -1,0 +1,47 @@
+# Compiled Java classes
+*.class
+
+# IDE settings
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Maven and Gradle builds
+target/
+*.jar
+*.war
+*.ear
+
+# Gradle files
+.gradle/
+build/
+
+# Logs
+*.log
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# IntelliJ IDEA
+*.idea/
+*.iml
+out/
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# NetBeans
+nbproject/private/
+
+# VS Code
+.vscode/
+
+# Ignore test reports
+test-output/
+
+# Java-generated files
+hs_err_pid*
