@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+
+package com.pavikumbhar.grpc;
+
+// Import the annotations for HTTP/JSON transcoding support
+import "google/api/annotations.proto";
+
+// Define the User Service
+service UserService {
+  // Method to get user details by user ID
+  rpc GetUser (GetUserRequest) returns (GetUserResponse) {
+    option (google.api.http) = {
+      get: "/v1/users/{user_id}"
+    };
+  }
+
+  // Method to create a new user
+  rpc CreateUser (CreateUserRequest) returns (CreateUserResponse) {
+    option (google.api.http) = {
+      post: "/v1/users"
+      body: "*"
+    };
+  }
+}
+
+// Request message for GetUser
+message GetUserRequest {
+  string user_id = 1;
+}
+
+// Response message for GetUser
+message GetUserResponse {
+  string user_id = 1;
+  string name = 2;
+  string email = 3;
+  string role = 4;
+}
+
+// Request message for CreateUser
+message CreateUserRequest {
+  string name = 1;
+  string email = 2;
+  string role = 3;
+}
+
+// Response message for CreateUser
+message CreateUserResponse {
+  string user_id = 1;
+}
