@@ -1,0 +1,5 @@
+label:
+  map:
+    course: '{"id":101,"title":"Java"}'
+    certification: '{"cert":"OCPJP","level":"Intermediate"}'
+    program: '{"type":"Bootcamp","duration":"6 months"}'

@@ -6,6 +6,7 @@ import com.pavikumbhar.model.BookDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -20,27 +21,27 @@ public class BookAuthorController {
     private final BookAuthorServiceClient bookAuthorServiceClient;
 
  /*   @GetMapping
-    public Mono<AuthorDto> getAuthor(int authorId) {
+    public Mono<AuthorDto> getAuthor(@RequestParam int authorId) {
         return bookAuthorServiceClient.getAuthor(authorId);
     }*/
 
     @GetMapping
-    public AuthorDto getAuthor(int authorId) {
+    public AuthorDto getAuthor(@RequestParam int authorId) {
         return bookAuthorServiceClient.getAuthorB(authorId);
     }
 
     @GetMapping("/author-rc")
-    public Mono<AuthorDto> getAuthorRc(int authorId) {
+    public Mono<AuthorDto> getAuthorRc(@RequestParam int authorId) {
         return bookAuthorServiceClient.getAuthorRc(authorId);
     }
 
     @GetMapping("/book")
-    public List<BookDto> getBooksByAuthor(int authorId) {
+    public List<BookDto> getBooksByAuthor(@RequestParam int authorId) {
         return bookAuthorServiceClient.getBooksByAuthor(authorId);
     }
 
     @GetMapping("/book-rc")
-    public Flux<BookDto> getBooksByAuthorRc(int authorId) {
+    public Flux<BookDto> getBooksByAuthorRc(@RequestParam int authorId) {
         return bookAuthorServiceClient.getBooksByAuthorRc(authorId);
     }
 }

@@ -1,6 +1,8 @@
 package com.pavikumbhar.config;
 
+import io.grpc.Metadata;
 import io.grpc.Status;
+import io.grpc.StatusException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,10 +17,10 @@ public class ExceptionHandler {
         return ex -> {
             if (ex instanceof IllegalArgumentException) {
                 log.error("Invalid argument error in gRPC exception: {}", ex.getMessage(), ex);
-
-                return Status.INVALID_ARGUMENT
-                        .withDescription(ex.getMessage())
-                        .asException();
+                Metadata metadata = new Metadata();
+                metadata.put(Metadata.Key.of("error-code", Metadata.ASCII_STRING_MARSHALLER), "INVALID_ARGUMENT");
+                return Status.INVALID_ARGUMENT.withDescription(ex.getMessage())
+                        .asException(metadata);
             }
 
             log.error("Internal error in gRPC exception: {}", ex.getMessage(), ex);

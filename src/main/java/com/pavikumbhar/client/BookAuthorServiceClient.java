@@ -42,6 +42,7 @@ public class BookAuthorServiceClient {
     /** Retrieves an Author reactively with improved exception handling **/
     public Mono<AuthorDto> getAuthorRc(int authorId) {
         var authorRequest = Author.newBuilder().setAuthorId(authorId).build();
+        log.info("getAuthorRc author ID: {}", authorId);
         return reactorBookAuthorServiceStub.getAuthor(authorRequest)
                 .map(this::convertToAuthorDto)
                 .doOnError(e -> log.error("Error fetching author {}: {}", authorId, e.getMessage(), e))
